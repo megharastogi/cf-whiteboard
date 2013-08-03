@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Whiteboard Wizards</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "bootstrap" %>
+
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container" style="padding:70px 0;">
+		<div class="row col-lg-12" >
+			<div class="navbar navbar-fixed-top">
+			<a class="navbar-brand" href="/" style="max-width:250px;padding:9px;"><%=image_tag('logo.png', :style =>"width:30px;")%> Whiteboard Wizards</a>
+				<ul class="nav navbar-nav">
+			    <li class="<%=params[:action] == 'index' && params[:controller] == 'questions' ? 'active' : '' %>"><a href="/">Interview Question</a></li>
+			  	<li class="<%=params[:action] == 'new' && params[:controller] == 'questions' ? 'active' : '' %>"><%=link_to "Add New Question", new_question_path %></li>
+			  </ul>
+			</div>
+			<%= yield %>
+		</div>	
+	</div>
+</body>
+</html>
