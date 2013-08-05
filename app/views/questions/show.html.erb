@@ -1,6 +1,12 @@
+<script type="text/javascript">
+bkLib.onDomLoaded(function() {
+  new nicEditor({fullPanel : true}).panelInstance('comment_content');
+});
+
+</script>
 <%=link_to " < Back", questions_path, :class=>"btn btn-default", :style=>"font-size:12px;padding:8px;"%>
 <div class="list-group-item" style="padding:0px;margin-top:15px;">
-  <h4 class="list-group-item-heading" style="padding:10px 30px 10px 15px;border-bottom:1px solid #ddd;"><%=@question.title%>
+  <h4 class="list-group-item-heading" style="padding:10px 30px 10px 15px;border-bottom:1px solid #ddd;"><%=raw @question.title%>
   	<span class="label" style="font-size:12px;"><%=@question.company%></span>
   	<% if @question.job_title%>
   		<span class="label" style="font-size:12px;"><%=@question.job_title%></span>
@@ -12,12 +18,14 @@
   <% end %>
     <div style="font-weight:normal;font-size: 12px;text-align:right;">
       <%=link_to "Edit", edit_question_path(@question)%>
+      <span style="display:block;text-align:right;font-size:12px;"> By: <%=@question.user_name%></span>
+
     </div>
   </h4>
   <%@question.comments.each_with_index do |q, i| %>
-	 <p class="list-group-item-text"  style="padding:10px 30px 10px 15px;<%= i + 1 == @question.comments.size ? '' : 'border-bottom:1px solid #ddd;' %>"><%=q.content%>
+	 <div class="list-group-item-text"  style="padding:10px 30px 10px 15px;<%= i + 1 == @question.comments.size ? '' : 'border-bottom:1px solid #ddd;' %>"><%=raw q.content%>
       <span style="display:block;text-align:right;font-size:12px;">Answered By: <%=q.user_name%></span>
-   </p>
+   </div>
   <% end %> 
     <% if @comment %>
       <div class="alert alert-danger">
@@ -31,7 +39,7 @@
     <%= form_tag( '/comments/create_comment') do %>
       <div class="form-group" style="padding:10px 30px 10px 15px;">
         <label>Your Answer</label>
-        <textarea name ="content" style="width:800px;height:150px;" class="form-control"></textarea>
+        <textarea name ="content" style="width:800px;height:150px;" class="form-control" id="comment_content"></textarea>
         <br/>
         <label>Your Name</label>
         <input type="text" name="user_name" class="form-control" style="width:300px;"></input>

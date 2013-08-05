@@ -1,3 +1,10 @@
+<script type="text/javascript">
+bkLib.onDomLoaded(function() {
+  new nicEditor({fullPanel : true}).panelInstance('question_title');
+  new nicEditor({fullPanel : true}).panelInstance('question_comment_content');
+});
+</script>
+
 <%if !@question.errors.blank? %>
   <div class="alert alert-danger">
     <ul>

@@ -3,18 +3,20 @@
 	<div class="list-group">
 	<% @questions.each do |q|%>
 	  <a href="<%=question_path(q)%>" class="list-group-item">
-  	  <h4 class="list-group-item-heading"><%=q.title%>
+  	  <h4 class="list-group-item-heading"><%=raw q.title%>
   	  	<span class="label" style="font-size:12px;"><%=q.company%></span>
   	  	<% if q.job_title%>
-  	  		<span class="label" style="font-size:12px;"><%=q.job_title%></span>
+  	  		<span class="label" style="font-size:12px;"><%= q.job_title%></span>
   	  	<% end %>	
   	  <% if q.comments.size == 0 %>
   	  	<span class="label label-success" style="font-size:12px;">0 Answers</span>
   	  <% else %>
   	  	<span class="label label-success" style="font-size:12px;"><%=q.comments.size%> Answers</span>
   	  <% end %>
+      <span style="display:block;text-align:right;font-size:12px;"> By: <%=q.user_name%></span>
+
   	  </h4>
-    	<p class="list-group-item-text" ><%=q.comments.first ? q.comments.first.content : ''%></p>
+    	<div class="list-group-item-text" ><%=q.comments.first ? (raw q.comments.first.content) : ''%></div>
   	</a>
 	<% end %>
 	</div>
