@@ -35,4 +35,9 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.8.3', :require => false
+  gem "rspec-rails", "~> 2.0"
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "simplecov"
+  gem "nyan-cat-formatter"
 end
