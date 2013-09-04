@@ -2,7 +2,7 @@
 	<h3>Interview Questions</h3>
 	<div class="list-group">
 	<% @questions.each do |q|%>
-	  <a href="<%=question_path(q)%>" class="list-group-item">
+	  <div href="<%=question_path(q)%>" class="list-group-item" onclick="window.location.replace('<%=url_for :controller => "questions", :action => "show" ,:id => q.id%>');">
   	  <h4 class="list-group-item-heading"><%=raw q.title%>
   	  	<span class="label" style="font-size:12px;"><%=q.company%></span>
   	  	<% if q.job_title%>
@@ -17,7 +17,7 @@
 
   	  </h4>
     	<div class="list-group-item-text" ><%=q.comments.first ? (raw q.comments.first.content) : ''%></div>
-  	</a>
+  	</div>
 	<% end %>
 	</div>
 	<%= will_paginate @questions %>
